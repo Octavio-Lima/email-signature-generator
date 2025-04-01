@@ -161,3 +161,7 @@ cython_debug/
 
 # VSCode
 .vscode
+
+# Result and generation folders
+results/
+style/
