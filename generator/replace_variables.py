@@ -25,3 +25,10 @@ def key_loop(key: list[str], dictionary: dict[str, Any], signature: str):
         signature = re.sub(regex, variable, signature)
 
     return signature
+
+
+def get_variable(key: str, dictionary: dict[str, Any]):
+    join_key = ".".join(key)
+    variable = dictionary.get(key[-1], f"undefined: {join_key}")
+
+    return variable
