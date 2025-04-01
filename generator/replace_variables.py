@@ -13,3 +13,15 @@ def replace_variables(
     return signature_template
 
 
+def key_loop(key: list[str], dictionary: dict[str, Any], signature: str):
+    variable = get_variable(key, dictionary)
+
+    if isinstance(variable, dict):
+        for variable_dict_key in variable:
+            signature = key_loop([*key, variable_dict_key], variable, signature)
+    else:
+        variable_text = r".".join(key)
+        regex = r"(?=\{%text%).*?(?<=\})".replace("%text%", variable_text)
+        signature = re.sub(regex, variable, signature)
+
+    return signature
